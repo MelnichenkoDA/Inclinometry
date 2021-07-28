@@ -12,5 +12,6 @@ public:
 private:
 	double mySin(double a, double b) const;
 	double myCos(double a, double b) const;
+	bool isValidValue(double a) const;
 };
 

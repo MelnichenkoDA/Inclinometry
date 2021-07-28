@@ -127,11 +127,17 @@
   <ItemGroup>
     <ClCompile Include="ARMDataProcessor.cpp" />
     <ClCompile Include="DataProcessor.cpp" />
+    <ClCompile Include="DBConnection.cpp" />
+    <ClCompile Include="ExcelUploader.cpp" />
     <ClCompile Include="ISOHOWell.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="QueryReceiver.cpp" />
     <ClCompile Include="Receiver.cpp" />
     <ClCompile Include="Task.cpp" />
+    <ClCompile Include="Uploader.cpp" />
+    <ClCompile Include="WellInterval.cpp" />
     <ClCompile Include="XLSReceiver.cpp" />
+    <ClCompile Include="XLSWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Task.h" />
@@ -139,8 +145,14 @@
   <ItemGroup>
     <ClInclude Include="ARMDataProcessor.h" />
     <ClInclude Include="DataProcessor.h" />
+    <ClInclude Include="ExcelUploader.h" />
     <ClInclude Include="ISOHOWell.h" />
+    <ClInclude Include="DBConnection.h" />
+    <ClInclude Include="QueryReceiver.h" />
     <ClInclude Include="Receiver.h" />
+    <ClInclude Include="XLSWrapper.h" />
+    <QtMoc Include="WellInterval.h" />
+    <ClInclude Include="Uploader.h" />
     <ClInclude Include="XLSReceiver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

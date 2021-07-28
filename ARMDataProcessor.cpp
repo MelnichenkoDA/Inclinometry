@@ -1,5 +1,11 @@
 #include "ARMDataProcessor.h"
 
+namespace
+{
+    double kNullValue = -999.25;
+    double kEpsilon = 0.0001;
+}
+
 ARMDataProcessor::ARMDataProcessor()
 {}
 
@@ -7,10 +13,10 @@ void ARMDataProcessor::process(std::vector<Well>& isoho_wells) const
 {
     for (auto & well : isoho_wells)
     {
-        for (unsigned i = 0; i < well.interval_end_.size(); ++i)
+        for (const auto & interval : well.intervals)
         {
-            if (fabs(ceil(well.tilt_angle_[i] * 1e3f) - floor(well.tilt_angle_[i])) >= 0.6 ||
-                fabs(ceil(well.azimut_[i] * 1e3f) - floor(well.azimut_[i])) >= 0.6)
+            if (fabs(ceil(interval.angle * 1e3f) - floor(interval.angle)) >= 0.6 ||
+                fabs(ceil(interval.azimut * 1e3f) - floor(interval.azimut)) >= 0.6)
             {
                 well.isMinute = false;
                 break;
@@ -20,28 +26,32 @@ void ARMDataProcessor::process(std::vector<Well>& isoho_wells) const
         if (well.isMinute)
         {
             double split{}, integer{};
-            for (unsigned i = 0; i < well.interval_end_.size(); ++i)
+            for (auto& interval : well.intervals)
             {
-                split = modf(well.tilt_angle_[i], &integer);
-                well.tilt_angle_[i] = integer + split / 60.f * 100.f;
+                split = modf(interval.angle, &integer);
+                interval.angle = integer + split / 60.f * 100.f;
 
-                split = modf(well.azimut_[i], &integer);
-                well.azimut_[i] = integer + split / 60.f * 100.f;               
+                split = modf(interval.azimut, &integer);
+                interval.azimut = integer + split / 60.f * 100.f;
             }
         }
 
-        for (unsigned i = 1; i < well.interval_end_.size(); ++i)
+        for (unsigned i = 1; i < well.intervals.size(); ++i)
         {
-            const auto prev_angle = well.tilt_angle_[i - 1];
-            const auto angle = well.tilt_angle_[i];
-            const auto prev_azimut = well.azimut_[i - 1];
-            const auto azimut = well.azimut_[i];
+            const auto prev_angle = well.intervals[i - 1].angle;
+            const auto angle = well.intervals[i].angle;
+            const auto prev_azimut = well.intervals[i - 1].azimut;
+            const auto azimut = well.intervals[i].azimut;
 
-            const auto interval = well.interval_end_[i] - well.interval_end_[i - 1];
-            well.dy_[i] = well.dy_[i - 1] + interval * mySin(prev_angle, angle) * myCos(prev_azimut, azimut) - well.dy_[0];
-            well.dx_[i] = well.dx_[i - 1] + interval * mySin(prev_angle, angle) * mySin(prev_azimut, azimut) - well.dx_[0];
-            well.abs_depth_[i] = well.abs_depth_[i - 1] + interval * myCos(prev_angle, prev_azimut) - well.abs_depth_[0];
-            well.borehole_[i] = well.interval_end_[i] - well.abs_depth_[i] + well.abs_depth_[0];
+            const auto interval = well.intervals[i].interval_end - well.intervals[i - 1].interval_end;
+            
+            if (isValidValue(azimut) && isValidValue(prev_azimut))
+            {
+                well.intervals[i].dy = well.intervals[i - 1].dy + interval * mySin(prev_angle, angle) * myCos(prev_azimut, azimut) - well.intervals[0].dy;
+                well.intervals[i].dx = well.intervals[i - 1].dx + interval * mySin(prev_angle, angle) * mySin(prev_azimut, azimut) - well.intervals[0].dx;
+                well.intervals[i].abs_depth = well.intervals[i - 1].abs_depth + interval * myCos(prev_angle, prev_azimut) - well.intervals[0].abs_depth;
+                well.intervals[i].borehole = well.intervals[i].interval_end - well.intervals[i].abs_depth + well.intervals[0].abs_depth;
+            }            
         }
     }
 }
@@ -62,4 +72,9 @@ double ARMDataProcessor::myCos(double a, double b) const
         return -cos(temp);
     else
         return cos(temp);
+}
+
+bool ARMDataProcessor::isValidValue(double a) const
+{
+    return abs(a - kNullValue) > kEpsilon;
 }

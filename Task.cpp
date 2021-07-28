@@ -1,7 +1,8 @@
 #include "Task.h"
 #include "XLSReceiver.h"
-#include "DataProcessor.h"
+#include "ARMDataProcessor.h"
 
+#include "XLSWrapper.h"
 
 Task::Task(QObject* parent)
 	: QObject(parent)
@@ -14,9 +15,10 @@ void Task::run()
 		qInfo() << "Wrong command line arguments' format!";
 		std::exit(0);
 	}
-
-	auto receiver = getReceiver();
-	try {
+	
+	try
+	{
+		auto receiver = getReceiver();
 		auto data = receiver->getData();
 		ARMDataProcessor processor;
 		processor.process(data);
@@ -26,8 +28,6 @@ void Task::run()
 		qInfo() << exc.what();
 		std::exit(0);
 	}
-	
-
 }
 
 

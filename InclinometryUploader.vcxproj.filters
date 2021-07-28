@@ -25,18 +25,24 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Header Files\DataReceivers">
+      <UniqueIdentifier>{b18c3ded-acae-4b3e-b862-8f3c43b063a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataReceivers">
+      <UniqueIdentifier>{57a98a13-7bcb-4c43-961e-b9d54abfc74c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataUploader">
+      <UniqueIdentifier>{f27065fd-2a2e-4df5-8eed-62ef3a149029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataUploader">
+      <UniqueIdentifier>{13e3c547-eebc-42db-99e9-ef98c8e72d1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ISOHOWell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Receiver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Task.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="XLSReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -48,27 +54,69 @@
     <ClCompile Include="DataProcessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XLSReceiver.cpp">
+      <Filter>Source Files\DataReceivers</Filter>
+    </ClCompile>
+    <ClCompile Include="Receiver.cpp">
+      <Filter>Source Files\DataReceivers</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryReceiver.cpp">
+      <Filter>Source Files\DataReceivers</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnection.cpp">
+      <Filter>Source Files\DataReceivers</Filter>
+    </ClCompile>
+    <ClCompile Include="WellInterval.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Uploader.cpp">
+      <Filter>Source Files\DataUploader</Filter>
+    </ClCompile>
+    <ClCompile Include="ExcelUploader.cpp">
+      <Filter>Source Files\DataUploader</Filter>
+    </ClCompile>
+    <ClCompile Include="XLSWrapper.cpp">
+      <Filter>Source Files\DataReceivers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ISOHOWell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Receiver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <QtMoc Include="Task.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClInclude Include="XLSReceiver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ARMDataProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DataProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ISOHOWell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="WellInterval.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Receiver.h">
+      <Filter>Header Files\DataReceivers</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryReceiver.h">
+      <Filter>Header Files\DataReceivers</Filter>
+    </ClInclude>
+    <ClInclude Include="XLSReceiver.h">
+      <Filter>Header Files\DataReceivers</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConnection.h">
+      <Filter>Header Files\DataReceivers</Filter>
+    </ClInclude>
+    <ClInclude Include="Uploader.h">
+      <Filter>Header Files\DataUploader</Filter>
+    </ClInclude>
+    <ClInclude Include="ExcelUploader.h">
+      <Filter>Header Files\DataUploader</Filter>
+    </ClInclude>
+    <ClInclude Include="XLSWrapper.h">
+      <Filter>Header Files\DataReceivers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

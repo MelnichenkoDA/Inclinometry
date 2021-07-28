@@ -24,17 +24,17 @@ std::vector<Well> XLSReceiver::getData() const
 	
 	std::vector<Well> wells;
 	wells.push_back(Well(rows_count - 1));
-	auto& prev_well = wells.back();
-	fillWellNumber(prev_well);
+	auto& well = wells.back();
+	fillWellNumber(well);
 	
 	for (size_t row = 2; row < rows_count + 1; ++row)
 	{
 		//GL_1, UG_1, AZ_1
-		prev_well.interval_end_[row - 2] = getCellValue<double>(row, 5);
+		well.intervals[row - 2].interval_end = getCellValue<double>(row, 5);
 		if (row > 2)
-			prev_well.interval_begin_[row - 2] = prev_well.interval_end_[row - 3];
-		prev_well.tilt_angle_[row - 2] = getCellValue<double>(row, 6);
-		prev_well.azimut_[row - 2] = getCellValue<double>(row, 7);
+			well.intervals[row - 2].interval_begin = well.intervals[row - 3].interval_end;
+		well.intervals[row - 2].angle = getCellValue<double>(row, 6);
+		well.intervals[row - 2].azimut = getCellValue<double>(row, 7);
 	}
 	return wells;
 }
@@ -77,9 +77,9 @@ std::optional<std::pair<size_t, size_t>> XLSReceiver::getDataRange() const
 
 void XLSReceiver::fillWellNumber(Well& well) const
 {
-	well.wellid_ = getCellValue<double>(2, 2);
-	well.field_id_ = getCellValue<QString>(2, 3);
-	well.well_number_ = getCellValue<QString>(2, 4);
+	well.ois_code = getCellValue<double>(2, 2);
+	well.field_id = getCellValue<QString>(2, 3);
+	well.well_number = getCellValue<QString>(2, 4);
 }
 
 template <typename T>

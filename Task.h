@@ -3,7 +3,8 @@
 #include <qcoreapplication.h>
 #include <qdebug.h>
 
-#include "Receiver.h"
+class Receiver;
+class Uploader;
 
 class Task :
     public QObject
@@ -20,6 +21,7 @@ signals:
 
 private:
     bool checkArguments();
-    Receiver* getReceiver();
+    std::unique_ptr<Receiver> getReceiver();
+    std::unique_ptr<Uploader> getUploader();
 };
 

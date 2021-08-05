@@ -1,21 +1,2 @@
-﻿  ARMDataProcessor.cpp
-  DataProcessor.cpp
-  DBConnection.cpp
-  ExcelUploader.cpp
-  ISOHOWell.cpp
-  main.cpp
-  QueryReceiver.cpp
-  Receiver.cpp
-  Task.cpp
-  Uploader.cpp
-  WellInterval.cpp
-  XLSReceiver.cpp
-  XLSWrapper.cpp
-  moc_Task.cpp
-  moc_WellInterval.cpp
-Qt5AxContainerd.lib(qaxbase.obj) : warning LNK4099: PDB '' was not found with 'Qt5AxContainerd.lib(qaxbase.obj)' or at ''; linking object as if no debug info
-Qt5AxContainerd.lib(qaxobject.obj) : warning LNK4099: PDB 'Qt5AxContainerd.pdb' was not found with 'Qt5AxContainerd.lib(qaxobject.obj)' or at 'C:\Users\Rusty\source\repos\InclinometryUploader\x64\Debug\Qt5AxContainerd.pdb'; linking object as if no debug info
-Qt5AxContainerd.lib(qaxtypes.obj) : warning LNK4099: PDB 'Qt5AxContainerd.pdb' was not found with 'Qt5AxContainerd.lib(qaxtypes.obj)' or at 'C:\Users\Rusty\source\repos\InclinometryUploader\x64\Debug\Qt5AxContainerd.pdb'; linking object as if no debug info
-Qt5AxContainerd.lib(qaxutils.obj) : warning LNK4099: PDB 'Qt5AxContainerd.pdb' was not found with 'Qt5AxContainerd.lib(qaxutils.obj)' or at 'C:\Users\Rusty\source\repos\InclinometryUploader\x64\Debug\Qt5AxContainerd.pdb'; linking object as if no debug info
-Qt5AxBased.lib(qaxtypefunctions.obj) : warning LNK4099: PDB 'Qt5AxBased.pdb' was not found with 'Qt5AxBased.lib(qaxtypefunctions.obj)' or at 'C:\Users\Rusty\source\repos\InclinometryUploader\x64\Debug\Qt5AxBased.pdb'; linking object as if no debug info
+﻿  Task.cpp
   InclinometryUploader.vcxproj -> C:\Users\Rusty\source\repos\InclinometryUploader\x64\Debug\InclinometryUploader.exe

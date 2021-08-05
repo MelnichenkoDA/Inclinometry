@@ -53,7 +53,7 @@ void XLSWrapper::open(const QString& filename)
 	if (!sheet) throw std::runtime_error("Couldn't get Worksheet from Excel object");
 }
 
-bool XLSWrapper::isOpen()
+bool XLSWrapper::isOpen() const
 {
 	if (excel_object && workbooks && workbook && sheets && sheet)
 		return true;
@@ -78,7 +78,7 @@ void XLSWrapper::saveAs(const QString& filename)
 	workbook->dynamicCall("SaveAs(QVariant, QVariant, QVariant, QVariant, QVariant, QVariant, QVariant, QVariant, QVariant, QVariant, QVariant, QVariant)", lstParam);
 }
 
-int XLSWrapper::getRowsCount()
+int XLSWrapper::getRowsCount() const
 {
 	auto used_range = sheet->querySubObject("UsedRange");
 	if (!used_range)
@@ -94,7 +94,7 @@ int XLSWrapper::getRowsCount()
 	return rows_count.toInt();
 }
 
-int XLSWrapper::getColumnsCount()
+int XLSWrapper::getColumnsCount() const
 {
 	auto used_range = sheet->querySubObject("UsedRange");
 	if (!used_range)

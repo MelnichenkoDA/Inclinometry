@@ -66,7 +66,7 @@ void ExcelUploader::uploadWell(const Well& well, int & row)
 		excel_object.setCellValue(row, kColumnHeaders.at("UG"), interval.angle);
 		excel_object.setCellValue(row, kColumnHeaders.at("AZ"), interval.azimut);
 		excel_object.setCellValue(row, kColumnHeaders.at("UL"), interval.borehole);
-		excel_object.setCellValue(row, kColumnHeaders.at("ZZ"), interval.abs_depth);
+		excel_object.setCellValue(row, kColumnHeaders.at("ZZ"), interval.dz);
 		excel_object.setCellValue(row, kColumnHeaders.at("XX"), interval.dx);
 		excel_object.setCellValue(row, kColumnHeaders.at("YY"), interval.dy);
 		excel_object.setCellValue(row, kColumnHeaders.at("SM"), interval.displacement);

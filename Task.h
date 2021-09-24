@@ -18,10 +18,5 @@ public slots:
 
 signals:
     void finished();
-
-private:
-    bool checkArguments();
-    std::unique_ptr<Receiver> getReceiver();
-    std::unique_ptr<Uploader> getUploader();
 };
 

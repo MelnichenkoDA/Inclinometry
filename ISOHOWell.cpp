@@ -6,7 +6,7 @@ Well::Well()
 	magnite_deviation{},
 	field_id{},
 	well_number{},
-	correction_time{},
+	correction_time{  },
 	intervals{}
 {}
 
@@ -16,7 +16,7 @@ Well::Well(size_t size)
 	magnite_deviation{},
 	field_id{},
 	well_number{},
-	correction_time{},
+	correction_time{  },
 	intervals{ size }
 {}
 

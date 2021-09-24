@@ -125,9 +125,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArgumentsParser.cpp" />
     <ClCompile Include="ARMDataProcessor.cpp" />
     <ClCompile Include="DataProcessor.cpp" />
     <ClCompile Include="DBConnection.cpp" />
+    <ClCompile Include="DBUploader.cpp" />
     <ClCompile Include="ExcelUploader.cpp" />
     <ClCompile Include="ISOHOWell.cpp" />
     <ClCompile Include="main.cpp" />
@@ -143,8 +145,10 @@
     <QtMoc Include="Task.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArgumentsParser.h" />
     <ClInclude Include="ARMDataProcessor.h" />
     <ClInclude Include="DataProcessor.h" />
+    <ClInclude Include="DBUploader.h" />
     <ClInclude Include="ExcelUploader.h" />
     <ClInclude Include="ISOHOWell.h" />
     <ClInclude Include="DBConnection.h" />

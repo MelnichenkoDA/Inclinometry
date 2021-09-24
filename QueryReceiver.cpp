@@ -17,7 +17,8 @@ namespace
 		)raw"
 	};
 
-	const QString kGetWellInclinometry{
+	const QString kGetWellInclinometry
+	{
 		R"raw(
 			select distinct
             whc.ois_code as                               SK_1          --1 Скважина (уникальный идентификатор)     Not Null
@@ -38,7 +39,7 @@ namespace
             ,0 as                                         ZB2_1         --16  Номер ствола (инклинометрия)    Number (6)  PK Not Null Default 0
             ,0 as                                         GRAZ_1        --17  Географический азимут на глубине замера     Number  Default 0
             ,'' as                                        GLV_1         --18  Глубина по вертикали    Number  
-            ,to_char(h.survey_date,'DD.MM.YYYY') as       dkl_1         --19
+            ,h.survey_date as							  dkl_1         --19
             ,wh.uwi                                                     --20
           from ggd_rtk.well_dir_srvy_pts p                              -- записи замера
             left join ggd_rtk.well_hdr wh on p.uwi=wh.uwi               -- заголовок скважины
@@ -47,7 +48,8 @@ namespace
             left join pr_ggd_rtk.field_hdr_corr fhc on fhc.corp_id=wh.field  --справочник месторождений
             left join codes_lukoil.business_assoc ba on ba.assoc_id=wh.company_division
           where   h.SURVEY_MODE='IR'
-            and wh.uwi in (%1) and p.dir_srvy_id in (%2)      
+            and wh.uwi in (%1) and p.dir_srvy_id in (%2)
+			and h.survey_date=(select max(survey_date) from ggd_rtk.well_dir_srvy_hdr h1 where h1.uwi=wh.uwi and h1.dir_srvy_id=p.dir_srvy_id)      
           order by wh.uwi,md
 		)raw"
 	};
@@ -142,7 +144,7 @@ std::vector<Well> QueryReceiver::getInclinometries(const QString& uwi, const QSt
 		Well* prev{};
 		while (query.next())
 		{
-			if (!prev || (prev && prev->ois_code != query.value(0).toDouble()))
+			if (!prev || (prev && prev->ois_code != query.value(0)))
 			{
 				wells_data.emplace_back(Well{});
 				prev = &wells_data.back();
@@ -150,7 +152,7 @@ std::vector<Well> QueryReceiver::getInclinometries(const QString& uwi, const QSt
 				prev->ois_code = query.value(0).toDouble();
 				prev->field_id = query.value(1).toDouble();
 				prev->well_number = query.value(2).toString();
-				prev->correction_time = query.value(13).toDate();
+				prev->correction_time = query.value(13).toString();
 				prev->uwi = query.value(19).toString();
 				//prev->magnite_deviation = query.value().toDouble();
 			}

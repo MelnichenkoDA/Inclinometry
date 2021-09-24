@@ -37,6 +37,12 @@
     <Filter Include="Source Files\DataUploader">
       <UniqueIdentifier>{13e3c547-eebc-42db-99e9-ef98c8e72d1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ArgumentsParser">
+      <UniqueIdentifier>{7239042e-90fd-420c-a483-600e31d55568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ArgumentsParser">
+      <UniqueIdentifier>{c85c1385-b5ff-4f3b-9ef5-0badcf43b748}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ISOHOWell.cpp">
@@ -78,6 +84,12 @@
     <ClCompile Include="XLSWrapper.cpp">
       <Filter>Source Files\DataReceivers</Filter>
     </ClCompile>
+    <ClCompile Include="DBUploader.cpp">
+      <Filter>Source Files\DataUploader</Filter>
+    </ClCompile>
+    <ClCompile Include="ArgumentsParser.cpp">
+      <Filter>Source Files\ArgumentsParser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Task.h">
@@ -117,6 +129,12 @@
     </ClInclude>
     <ClInclude Include="XLSWrapper.h">
       <Filter>Header Files\DataReceivers</Filter>
+    </ClInclude>
+    <ClInclude Include="DBUploader.h">
+      <Filter>Header Files\DataUploader</Filter>
+    </ClInclude>
+    <ClInclude Include="ArgumentsParser.h">
+      <Filter>Header Files\ArgumentsParser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

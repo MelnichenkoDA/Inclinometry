@@ -11,7 +11,6 @@ XLSReceiver::~XLSReceiver()
 std::vector<Well> XLSReceiver::getData() const
 {
 	auto rows_count = excel_object.getRowsCount();
-	//auto columns = excel_object.getColumnsCount();
 	
 	std::vector<Well> wells;
 	wells.push_back(Well(rows_count - 1));
@@ -26,13 +25,16 @@ std::vector<Well> XLSReceiver::getData() const
 			well.intervals[row - 2].interval_begin = well.intervals[row - 3].interval_end;
 		well.intervals[row - 2].angle = excel_object.getCellValue<double>(row, 6);
 		well.intervals[row - 2].azimut = excel_object.getCellValue<double>(row, 7);
+
+		well.intervals[row - 2].curvature_max = excel_object.getCellValue<QString>(row, 17);
 	}
 	return wells;
 }
 
 void XLSReceiver::fillWellNumber(Well& well) const
 {
-	well.ois_code = excel_object.getCellValue<double>(2, 2);
+	well.ois_code = excel_object.getCellValue<QString>(2, 2);
 	well.field_id = excel_object.getCellValue<QString>(2, 3);
 	well.well_number = excel_object.getCellValue<QString>(2, 4);
+	well.correction_time = excel_object.getCellValue<QString>(2, 15);;
 }

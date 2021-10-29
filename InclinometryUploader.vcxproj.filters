@@ -90,6 +90,9 @@
     <ClCompile Include="ArgumentsParser.cpp">
       <Filter>Source Files\ArgumentsParser</Filter>
     </ClCompile>
+    <ClCompile Include="DBConfigurator.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Task.h">
@@ -135,6 +138,9 @@
     </ClInclude>
     <ClInclude Include="ArgumentsParser.h">
       <Filter>Header Files\ArgumentsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DBConfigurator.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

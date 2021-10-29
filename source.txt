@@ -1,0 +1,5 @@
+server:172.31.9.22
+port:1521
+password:pwd
+username:user
+dbname:ggpd.world

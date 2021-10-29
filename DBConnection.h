@@ -9,14 +9,14 @@ class DBConnection
 {
 	QSqlDatabase database;
 public:
-	DBConnection();
-	DBConnection(const QStringList& connection_data);
+	DBConnection(const QString& connection_name);
+	DBConnection(const QString& connection_config, const QString & connection_name);
 	~DBConnection();
 
 	void connect(const QStringList & connection_data);
 
 	bool isOpen() const;
 	QSqlDatabase getDatabase() const;
-	QSqlError lastError() const;
+	QSqlError getLastError() const;
 };
 

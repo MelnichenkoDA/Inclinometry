@@ -1,11 +1,9 @@
 #include "Task.h"
 #include "XLSReceiver.h"
 #include "ARMDataProcessor.h"
-
 #include "XLSWrapper.h"
 #include "DBUploader.h"
 #include "ArgumentsParser.h"
-
 
 Task::Task(QObject* parent)
 	: QObject(parent)
@@ -20,7 +18,7 @@ void Task::run()
 		{
 			if (auto receiver = parser.getReceiver(); receiver)
 			{
-				auto data = receiver->getData();
+				auto data = receiver->getData();				
 				ARMDataProcessor processor;
 				processor.process(data);
 
@@ -28,7 +26,7 @@ void Task::run()
 				if (uploader)
 					uploader->uploadData(data);
 			}
-		}		
+		}
 	}
 	catch (const std::exception& exc)
 	{

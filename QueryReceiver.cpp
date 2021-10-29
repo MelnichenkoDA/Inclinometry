@@ -1,6 +1,8 @@
 #include "QueryReceiver.h"
 
 #include <QVariant>
+#include <QDir>
+#include <stdexcept>
 
 namespace
 {
@@ -66,22 +68,23 @@ namespace
                 select SK_1,MS_1,S1_1,GL_1,UG_1,AZ_1,UL_1,ZZ_1,XX_1,YY_1,SM_1,DU_1,KR_1,TK_1,GLN_1,KR_MAX_1,ZB2_1,GRAZ_1,GLV_1,DKL_1 from dual
         )raw"
 	};
+
+	const QString kIsohoConfig = "source.txt";
 }
 
 QueryReceiver::QueryReceiver()
-	:isoho_connection{},
-	plus_connection{}
-{
-	auto connection_string = getConnectionData();
-	isoho_connection.connect(connection_string);
-	plus_connection.connect(connection_string);
-}
+	:isoho_connection{ kIsohoConfig, "isoho_connection"},
+	plus_connection{"plus_connection"}
+{}
 
 std::vector<Well> QueryReceiver::getData() const
 {
+	if (!isoho_connection.isOpen())
+		throw std::runtime_error(isoho_connection.getLastError().text().toStdString());
+
 	const auto isoho_wells = getWells();
 	QString uwi_id, srvy_id;
-	for (auto itr = isoho_wells.cbegin(); itr != std::prev(isoho_wells.cend());)
+	for (const auto itr = isoho_wells.cbegin(); itr != std::prev(isoho_wells.cend());)
 	{
 		uwi_id += itr->first + ", ";
 		srvy_id += itr->second + ", ";
@@ -90,11 +93,6 @@ std::vector<Well> QueryReceiver::getData() const
 	srvy_id += isoho_wells.back().second;
 
 	return getInclinometries(uwi_id, srvy_id);
-}
-
-QStringList QueryReceiver::getConnectionData() const
-{
-	return {};
 }
 
 QString QueryReceiver::getOrganization() const
@@ -110,7 +108,7 @@ std::vector<std::pair<QString, QString>> QueryReceiver::getWellUWI(const DBConne
 		std::vector<std::pair<QString, QString>> wells_list(query.size());
 		size_t ind{};
 		while (query.next())
-			wells_list[ind++] = std::pair(query.value(0).toString(), query.value(1).toString());
+			wells_list[ind++] = std::pair<QString, QString>(query.value(0).toString(), query.value(1).toString());
 		return wells_list;
 	}
 	else

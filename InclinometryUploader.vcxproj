@@ -45,8 +45,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtInstall>msvc2017_64</QtInstall>
-    <QtModules>core;sql</QtModules>
+    <QtModules>core;sql;axcontainer</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
+    <QtDeploy>true</QtDeploy>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
     <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
@@ -98,6 +99,11 @@
       <AdditionalOptions> /SUBSYSTEM:WINDOWS </AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -128,6 +134,7 @@
     <ClCompile Include="ArgumentsParser.cpp" />
     <ClCompile Include="ARMDataProcessor.cpp" />
     <ClCompile Include="DataProcessor.cpp" />
+    <ClCompile Include="DBConfigurator.cpp" />
     <ClCompile Include="DBConnection.cpp" />
     <ClCompile Include="DBUploader.cpp" />
     <ClCompile Include="ExcelUploader.cpp" />
@@ -148,6 +155,7 @@
     <ClInclude Include="ArgumentsParser.h" />
     <ClInclude Include="ARMDataProcessor.h" />
     <ClInclude Include="DataProcessor.h" />
+    <ClInclude Include="DBConfigurator.h" />
     <ClInclude Include="DBUploader.h" />
     <ClInclude Include="ExcelUploader.h" />
     <ClInclude Include="ISOHOWell.h" />

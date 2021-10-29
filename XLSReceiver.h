@@ -1,6 +1,5 @@
 #pragma once
 #include "Receiver.h"
-#include <QAxObject>
 #include "XLSWrapper.h"
 
 class XLSReceiver :

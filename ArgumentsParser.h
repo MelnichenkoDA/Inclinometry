@@ -1,5 +1,6 @@
 #pragma once
 #include <qobject.h>
+#include <memory>
 
 class Receiver;
 class Uploader;

@@ -11,7 +11,6 @@ public:
     virtual std::vector<Well> getData() const override;
 
 private:
-    QStringList getConnectionData() const;
     QString getOrganization() const;
     std::vector<std::pair<QString, QString>> getWellUWI(const DBConnection & connection, const QString & organization_id) const;
     std::vector<std::pair<QString, QString>> getWells() const;

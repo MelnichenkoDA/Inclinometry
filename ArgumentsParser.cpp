@@ -71,7 +71,6 @@ std::unique_ptr<Uploader> ArgumentsParser::getUploader() const
 
 QString ArgumentsParser::getDirection(const QStringList& arguments, const QString& argument_template)
 {
-	//the first argument is name of the application
 	for (int i = 1; i < arguments.size(); ++i)
 	{
 		if (arguments[i].startsWith(argument_template))
